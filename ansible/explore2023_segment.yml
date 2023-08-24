@@ -1,0 +1,16 @@
+# Copyright 2018 VMware, Inc.
+# SPDX-License-Identifier: BSD-2-Clause OR GPL-3.0-only
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Modify Segment
+      vmware.ansible_for_nsxt.nsxt_policy_segment:
+        hostname: "yournsxmanagerhere"
+        username: "{{ lookup('env', 'NSXUSER') }}"
+        password: "{{ lookup('env', 'NSXPASS') }}"
+        state: "present"
+        validate_certs: "false"
+        display_name: "explore2023_segment"
+        domain_name: "infra"
+        transport_zone_display_name: "nsx-overlay-transportzone"
